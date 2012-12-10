@@ -29,9 +29,8 @@ export class Ship extends ex.Actor {
       pos: new ex.Vector(x, y),
       width: 32,
       height: 32,
+      collisionType: ex.CollisionType.Passive,
     });
-
-    this.body.collider.type = ex.CollisionType.Passive;
   }
 
   onInitialize(engine: ex.Engine) {
@@ -47,13 +46,29 @@ export class Ship extends ex.Actor {
     });
 
     // Get animation
-    const anim = shipsSheet.getSprite(0);
-    anim.scale = new ex.Vector(4, 4);
-    this.addDrawing('default', anim);
+    const anim = shipsSheet.getSprite(0, 0);
+    if (anim) {
+      anim.scale = new ex.Vector(4, 4);
+      this.graphics.use(anim);
+    }
 
-    this.explode = explosionSpriteSheet.getAnimationForAll(engine, 40);
+    this.explode = ex.Animation.fromSpriteSheet(
+      explosionSpriteSheet,
+      ex.Util.range(0, 24),
+      40,
+      ex.AnimationStrategy.End,
+    );
     this.explode.scale = new ex.Vector(3, 3);
-    this.explode.loop = false;
+
+    // const ray = new ex.Ray(ex.vec(0, 0), ex.Vector.fromAngle(Math.PI / 4));
+
+    // const maxLength = 100; // pixels
+
+    // // Returns vector (50, 50) that is the top left corner of the box actor
+    // const maybeCollisionPoint1 = this.collider.get().rayCast(ray, maxLength);
+
+    // // Returns null when no collision when ray casting only 10 pixels
+    // const maybeCollisionPoint2 = this.collider.get().rayCast(ray, 10);
   }
 
   onPreCollision(evt: ex.PreCollisionEvent) {

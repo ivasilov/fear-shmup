@@ -11,7 +11,7 @@
     "build:dev": "webpack --config webpack.development.js",
     "build:prod": "webpack --config webpack.production.js",
     "fix:prettier": "prettier --write **/*.{ts,md,json,js,yml} .",
-    "clean": "run-p clean:* && rm -rf node_modules"
+    "clean": "rm -rf node_modules"
   },
   "author": "Excalibur.js Team",
   "license": "BSD-2-Clause",

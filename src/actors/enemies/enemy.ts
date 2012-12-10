@@ -19,19 +19,21 @@ export abstract class IEnemy extends ex.Actor {
       pos: new ex.Vector(x, y),
       width: width,
       height: height,
+      collisionType: ex.CollisionType.Passive,
     });
-
-    // Passive recieves collision events but does not participate in resolution
-    this.body.collider.type = ex.CollisionType.Passive;
 
     // Setup listeners
     this.on('precollision', this.onPreCollision);
   }
 
   onInitialize(engine: ex.Engine) {
-    this.explode = explosionSpriteSheet.getAnimationForAll(engine, 40);
+    this.explode = ex.Animation.fromSpriteSheet(
+      explosionSpriteSheet,
+      ex.Util.range(0, 24),
+      40,
+      ex.AnimationStrategy.End,
+    );
     this.explode.scale = new ex.Vector(3, 3);
-    this.explode.loop = false;
 
     this.onInitializeAnimation(engine);
     this.onInitializeMovement(engine);

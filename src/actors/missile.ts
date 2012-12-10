@@ -18,7 +18,13 @@ export class Missile extends ex.Actor {
   }
 
   onInitialize(engine: ex.Engine) {
-    const anim = gameSheet.getAnimationByIndices(engine, [13, 14, 15], 50);
+    const anim = new ex.Animation({
+      frames: [
+        { graphic: gameSheet.getSprite(1, 3)!, duration: 50 },
+        { graphic: gameSheet.getSprite(1, 4)!, duration: 50 },
+        { graphic: gameSheet.getSprite(1, 5)!, duration: 50 },
+      ],
+    });
     anim.scale = new ex.Vector(3, 3);
   }
 

@@ -1,16 +1,17 @@
 import * as ex from 'excalibur';
 import Config from '../../config';
-import { gameSheet, shipsSheet } from '../../resources';
+import { shipsSheet } from '../../resources';
 import { Bullet } from '../bullet';
 import { IEnemy } from './enemy';
 
 export class ClassicEnemy extends IEnemy {
   onInitializeAnimation(engine: ex.Engine): void {
-    const anim = shipsSheet.getSprite(14);
-    // anim.rotation = 180;
-    anim.flipVertical = true;
-    anim.scale = new ex.Vector(4, 4);
-    this.addDrawing('default', anim);
+    const anim = shipsSheet.getSprite(0, 3);
+    if (anim) {
+      anim.flipVertical = true;
+      anim.scale = new ex.Vector(4, 4);
+      this.graphics.use(anim);
+    }
   }
   static WIDTH = 80;
   static HEIGHT = 80;
@@ -20,23 +21,22 @@ export class ClassicEnemy extends IEnemy {
   }
 
   onInitializeMovement(engine: ex.Engine) {
-    this.actions
-      .moveTo(ClassicEnemy.WIDTH, ClassicEnemy.HEIGHT, Config.enemySpeed)
-      .moveTo(engine.drawWidth - ClassicEnemy.WIDTH, ClassicEnemy.HEIGHT, Config.enemySpeed)
-      .moveTo(ClassicEnemy.WIDTH, ClassicEnemy.HEIGHT, Config.enemySpeed)
-      .repeatForever();
+    this.actions.repeatForever(context => {
+      context
+        .moveTo(ClassicEnemy.WIDTH, ClassicEnemy.HEIGHT, Config.enemySpeed)
+        .moveTo(engine.drawWidth - ClassicEnemy.WIDTH, ClassicEnemy.HEIGHT, Config.enemySpeed)
+        .moveTo(ClassicEnemy.WIDTH, ClassicEnemy.HEIGHT, Config.enemySpeed);
+    });
   }
 
   onInitializeFiring(engine: ex.Engine) {
     this.fireTimer = new ex.Timer({
-      fcn: () => {
-        this.fire(engine);
-      },
+      fcn: () => this.fire(engine),
       interval: Config.enemyFireInterval,
       repeats: true,
-      numberOfRepeats: -1,
     });
     engine.addTimer(this.fireTimer);
+    this.fireTimer.start();
   }
 
   private flipBarrel = true;

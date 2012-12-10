@@ -26,14 +26,14 @@ export class AnimationManager extends ex.Actor {
 
   onPostUpdate(engine: ex.Engine, elapsed: number) {
     this.animations.forEach(a => a.anim.tick(elapsed, engine.stats.currFrame.id));
-    this.animations = this.animations.filter(a => !a.anim.isDone());
+    // this.animations = this.animations.filter(a => !a.anim.isDone());
   }
 
   // PostDraw gives the rendering context and the time between frames
   onPostDraw(ctx: CanvasRenderingContext2D /*, delta: number */) {
-    for (let node of this.animations) {
-      node.anim.draw(ctx, node.pos.x - node.anim.drawWidth / 2, node.pos.y - node.anim.drawHeight / 2);
-    }
+    // for (let node of this.animations) {
+    //     node.anim.draw(ctx, node.pos.x - node.anim.drawWidth / 2, node.pos.y -node.anim.drawHeight / 2);
+    // }
   }
 }
 

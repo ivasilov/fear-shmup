@@ -9,8 +9,8 @@ export class Bullet extends ex.Actor {
       vel: new ex.Vector(dx, dy),
       width: 16,
       height: 16,
+      collisionType: ex.CollisionType.Passive,
     });
-    this.body.collider.type = ex.CollisionType.Passive;
     this.owner = owner;
   }
 
@@ -19,8 +19,10 @@ export class Bullet extends ex.Actor {
     // Clean up on exit viewport
     this.on('exitviewport', () => this.kill());
 
-    const anim = tilesSheet.getSprite(0);
-    this.addDrawing('default', anim);
+    const anim = tilesSheet.getSprite(0, 0);
+    if (anim) {
+      this.graphics.use(anim);
+    }
   }
 
   private onPreCollision(evt: ex.PreCollisionEvent) {

@@ -1,25 +1,25 @@
 import * as ex from 'excalibur';
 
-import fighterFile from '../res/fighter.png';
-import enemyFile from '../res/enemy.png';
-import spriteexplosionFile from '../res/spriteexplosion.png';
-import gameSheetFile from '../res/gameSheet.png';
-import laserFile from '../res/laser.wav';
-import enemyfireFile from '../res/enemyfire.wav';
-import explodeFile from '../res/explode.wav';
-import hitFile from '../res/hit.wav';
-import powerupFile from '../res/powerup.wav';
-import rocketFile from '../res/rocket.wav';
-import shipsFile from '../res/kenney_pixelshmup/Tilemap/ships_packed.png';
-import tilesFile from '../res/kenney_pixelshmup/Tilemap/tiles_packed.png';
+import fighterFile from '../assets/fighter.png';
+import enemyFile from '../assets/enemy.png';
+import spriteexplosionFile from '../assets/spriteexplosion.png';
+import gameSheetFile from '../assets/gameSheet.png';
+import laserFile from '../assets/laser.wav';
+import enemyfireFile from '../assets/enemyfire.wav';
+import explodeFile from '../assets/explode.wav';
+import hitFile from '../assets/hit.wav';
+import powerupFile from '../assets/powerup.wav';
+import rocketFile from '../assets/rocket.wav';
+import shipsFile from '../assets/Tilemap/ships_packed.png';
+import tilesFile from '../assets/Tilemap/tiles_packed.png';
 
-const Images: { [key: string]: ex.Texture } = {
-  fighter: new ex.Texture(fighterFile),
-  ships: new ex.Texture(shipsFile),
-  tiles: new ex.Texture(tilesFile),
-  enemyPink: new ex.Texture(enemyFile),
-  explosion: new ex.Texture(spriteexplosionFile),
-  sheet: new ex.Texture(gameSheetFile),
+const Images: { [key: string]: ex.ImageSource } = {
+  fighter: new ex.ImageSource(fighterFile),
+  ships: new ex.ImageSource(shipsFile),
+  tiles: new ex.ImageSource(tilesFile),
+  enemyPink: new ex.ImageSource(enemyFile),
+  explosion: new ex.ImageSource(spriteexplosionFile),
+  sheet: new ex.ImageSource(gameSheetFile),
 };
 
 const Sounds: { [key: string]: ex.Sound } = {
@@ -31,10 +31,43 @@ const Sounds: { [key: string]: ex.Sound } = {
   rocketSound: new ex.Sound(rocketFile),
 };
 
-const shipsSheet = new ex.SpriteSheet(Images.ships, 4, 6, 32, 32);
-const tilesSheet = new ex.SpriteSheet(Images.tiles, 12, 10, 16, 16);
-const explosionSpriteSheet = new ex.SpriteSheet(Images.explosion, 5, 5, 45, 45);
-const gameSheet = new ex.SpriteSheet(Images.sheet, 10.0, 10.0, 32.0, 32.0);
+const shipsSheet = ex.SpriteSheet.fromImageSource({
+  image: Images.ships,
+  grid: {
+    columns: 4,
+    rows: 6,
+    spriteWidth: 32,
+    spriteHeight: 32,
+  },
+});
+const tilesSheet = ex.SpriteSheet.fromImageSource({
+  image: Images.tiles,
+  grid: {
+    columns: 12,
+    rows: 10,
+    spriteWidth: 16,
+    spriteHeight: 16,
+  },
+});
+const explosionSpriteSheet = ex.SpriteSheet.fromImageSource({
+  image: Images.explosion,
+  grid: {
+    columns: 5,
+    rows: 5,
+    spriteWidth: 16,
+    spriteHeight: 16,
+  },
+});
+
+const gameSheet = ex.SpriteSheet.fromImageSource({
+  image: Images.sheet,
+  grid: {
+    columns: 10,
+    rows: 10,
+    spriteWidth: 16,
+    spriteHeight: 16,
+  },
+});
 
 const loader = new ex.Loader();
 const allResources = { ...Images, ...Sounds };

@@ -6,12 +6,13 @@ import { Game } from './game';
 
 const engine = new ex.Engine({
   backgroundColor: ex.Color.Black,
+  antialiasing: false,
+  suppressConsoleBootMessage: true,
+  suppressPlayButton: true,
 });
-engine.backgroundColor = ex.Color.Black;
-engine.setAntialiasing(false);
 
 // Setup game scene
-engine.add('game', new Game(engine));
+engine.add('game', new Game());
 engine.goToScene('game');
 
 // Game events to handle
@@ -26,7 +27,7 @@ engine.on('visible', () => {
 
 engine.input.keyboard.on('press', (evt: ex.Input.KeyEvent) => {
   if (evt.key === ex.Input.Keys.D) {
-    engine.isDebug = !engine.isDebug;
+    engine.showDebug(!engine.isDebug);
   }
 });
 
