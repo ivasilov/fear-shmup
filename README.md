@@ -1,20 +1,21 @@
-# Excalibur TypeScript & Webpack Starter
+# Fear Shmup
 
-This is a barebones [Excalibur](https://excaliburjs.com) game engine starter built using Typescript 4 & Webpack 5. It's a great starting place to jumpstart building your game! This repo is a template and can be used to [create your own repository](https://github.com/excaliburjs/template-ts-webpack/generate) in GitHub.
+Fear Shmup is/will be a SHMUP-style game where the player flies a damaged plane. The plane goes through several encounters
+with enemy planes where all planes communicate between each other (with chat bubbles) to destroy the player. The player
+should use the coordination info against them and survive the encounters. This game mechanic is inspired by the F.E.A.R.
+ game, hence the name.
 
-Check out our [other samples](https://excaliburjs.com/samples) while you build your game or [ask us questions](https://github.com/excaliburjs/Excalibur/discussions).
+## Next steps
 
-## Get Started
+- Figure out line of sight algorithm
+- Figure out how to render planes from https://kenney.itch.io/ship-mixer
+- Figure out a way for the enemies to communicate between each other.
+  - Decide whether there's a hearing distance.
+  - Figure out how to render speech bubbles
+- Try to write few types of enemies
+  - Protector - doesn't shoot, only stands in front of other ships and takes the damage
+  - Needle - small vulnerable ship which needs time to charge and commands other ships to protect him
+  - Pincer - combo of two ship which tries to corner the player
+  - Disruptor - destroy the user bullets/missiles
+- Maybe use https://kenney.nl/assets/pixel-shmup for rendering a map with parallax effect (should be available in Excalibur soon)
 
-- Using [Node.js](https://nodejs.org/en/) 14 (LTS) and [npm](https://www.npmjs.com/)
-- Run the `npm install` to install dependencies
-- Run the `npm start` to run the development server to test out changes
-  - [Webpack](https://webpack.js.org/) will build the [Typescript](https://www.typescriptlang.org/) into Javascript
-  - [Webpack dev server](https://webpack.js.org/configuration/dev-server/) will host the script in a little server on http://localhost:8080/
-
-## Publishing
-
-- Run `npm run build:dev` to produce Javascript bundles for debugging in the `dist/` folder
-- Run `npm run build:prod` to produce Javascript bundles for production (minified) in the `dist/` folder
-
-The `dist/` folder can be deployed to a static web host. We recommend [Netlify](https://netlify.com) or [GitHub Pages](https://pages.github.com/) since they are free to use.
