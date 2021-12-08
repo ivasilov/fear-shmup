@@ -1,0 +1,1 @@
+export { IEnemy } from './enemy';
