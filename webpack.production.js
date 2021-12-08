@@ -1,10 +1,10 @@
-const { merge } = require("webpack-merge");
-const CompressionWebpackPlugin = require("compression-webpack-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
-const common = require("./webpack.common");
+const { merge } = require('webpack-merge');
+const CompressionWebpackPlugin = require('compression-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const common = require('./webpack.common');
 
 module.exports = merge(common, {
-  mode: "production",
+  mode: 'production',
   optimization: {
     minimize: true,
     minimizer: [new TerserPlugin()],

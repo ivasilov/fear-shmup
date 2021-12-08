@@ -3,7 +3,7 @@ name: Feature Request
 about: Suggest a new feature or improvement
 ---
 
-<!-- ::: IMPORTANT NOTE ::: 
+<!-- ::: IMPORTANT NOTE :::
 
 Hi, this is the Excalibur development team. Please take a moment to read the instructions below:
 
@@ -19,8 +19,10 @@ https://github.com/excaliburjs/Excalibur/blob/main/.github/CONTRIBUTING.md#sugge
 <!-- Add relevant pictures/gifs as appropriate -->
 
 ### Context
+
 <!-- Explain the background information for this request -->
 
 ### Proposal
+
 <!-- Your idea for the new feature, improvement, etc. -->
 <!-- If you have any ideas for implementation or next steps, add those here -->

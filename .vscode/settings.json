@@ -8,6 +8,5 @@
     "build/**": true
   },
   "typescript.tsdk": "api/node_modules/typescript/lib",
-  "editor.accessibilitySupport": "off",
-  
+  "editor.accessibilitySupport": "off"
 }
