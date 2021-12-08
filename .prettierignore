@@ -1,0 +1,11 @@
+# .prettierignore
+built/
+build/
+dist/
+.next/
+admin-api.graphql
+shop-api.graphql
+api/static/email/test-emails
+*.generated.ts
+node_modules
+*.hbs
